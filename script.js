@@ -1,5 +1,26 @@
 // Cornerways site — tab navigation, no page reloads, no dependencies.
 (function(){
+  // ---- Render crag cards from crags-data.js -----------------
+  function renderCrags(){
+    var container = document.getElementById('crags-list');
+    if (!container || typeof CRAGS === 'undefined') return;
+    container.innerHTML = CRAGS.map(function(crag){
+      var linksHtml = (crag.links || []).map(function(l){
+        return '<a class="rlink" href="' + l.url + '" target="_blank" rel="noopener">' + l.label + ' →</a>';
+      }).join('<br>');
+      return (
+        '<div class="route-card">' +
+          '<h3>' + crag.name + '</h3>' +
+          '<div class="stats"><span><b>' + (crag.style || '') + '</b></span><span>' + (crag.note || '') + '</span></div>' +
+          '<p>' + (crag.description || '') + '</p>' +
+          '<p>' + linksHtml + '</p>' +
+        '</div>'
+      );
+    }).join('');
+  }
+  renderCrags();
+
+  // ---- Tabs --------------------------------------------------
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
   var panels  = Array.prototype.slice.call(document.querySelectorAll('.tab-panel'));
 
@@ -27,7 +48,7 @@
 
   function routeFromHash(){
     var hash = window.location.hash.replace('#', '');
-    if (!hash){ activate('home'); return; }
+    if (!hash){ activate('walks'); return; }
     var parts = hash.split('/'); // e.g. explore/climbing
     activate(parts[0], parts[1]);
   }
