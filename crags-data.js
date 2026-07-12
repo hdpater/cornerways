@@ -42,5 +42,37 @@ const CRAGS = [
       { label: "Crag notes — St Aldhelm's Head (UKC)", url: "https://www.ukclimbing.com/logbook/crag.php?id=2866" }
       // No confirmed "directions from the cottage" link yet — add one here when you have it.
     ]
+  },
+  {
+    name: "Hedbury Quarry",
+    style: "Sport & trad",
+    note: "Compact quarry + Big Cove / Smokey Hole trad",
+    description: "A smaller, quieter version of the main quarry at Dancing Ledge — steep, solid rock with good winter sun. Just around the corner, Hedbury Big Cove and Smokey Hole add some harder, more atmospheric trad in a dramatic setting.",
+    links: [
+      { label: "Route guide (theCrag)", url: "https://www.thecrag.com/en/climbing/united-kingdom/swanage/hedbury-quarry" },
+      { label: "Crag notes (UKC)", url: "https://ukclimbing.com/logbook/crag.php?id=257" }
+      // No confirmed "directions from the cottage" link yet — add one here when you have it.
+    ]
+  },
+  {
+    name: "Subluminal",
+    style: "Trad",
+    note: "Beginner-friendly ledges + the committing Black Zawn",
+    description: "The western section is a friendly, popular sea cliff with plenty of good lower-grade trad and pleasant cliff-top ledges to socialise on. Just east, and directly below Anvil Point lighthouse, the Black Zawn steps things up considerably for those with more experience.",
+    links: [
+      { label: "Route guide (theCrag)", url: "https://www.thecrag.com/en/climbing/united-kingdom/swanage/subluminal-cliff" },
+      { label: "Crag notes (UKC)", url: "https://www.ukclimbing.com/logbook/crags/subluminal_and_lighthouse_cliff-245/" }
+      // No confirmed "directions from the cottage" link yet — add one here when you have it.
+    ]
+  },
+  {
+    name: "Portland",
+    style: "Sport & trad & DWS",
+    note: "A bigger day out — not broken down by individual crag here",
+    description: "About 45 minutes' drive away, Portland is the other major south-coast climbing destination — famous for excellent bolted sport climbing (The Cuttings, Blacknor, and more), plus trad and deep water soloing. Worth a full day trip rather than a quick add-on.",
+    links: [
+      { label: "Portland overview (theCrag)", url: "https://www.thecrag.com/en/climbing/united-kingdom/portland" },
+      { label: "Guidebook info (UKC)", url: "https://www.ukclimbing.com/logbook/books/portland-602" }
+    ]
   }
 ];

@@ -37,5 +37,13 @@ const WALKS = [
     links: [
       { label: "GPS route on Komoot", url: "https://www.komoot.com/smarttour/516386" }
     ]
+  },
+  {
+    name: "Durlston Woodland Trail",
+    length: "~0.5 mi · Easy · Well-surfaced, gentle",
+    description: "A short, sheltered, buggy-friendly waymarked trail through Durlston Country Park's historic Victorian pleasure grounds, past the Great Globe and Durlston Castle. A gentle option on a poor-weather day, or a good add-on to a visit to the Castle's café and visitor centre.",
+    links: [
+      { label: "Directions from the cottage", url: "https://maps.app.goo.gl/PrNyb8HRxaPnuJYo6?g_st=ic" }
+    ]
   }
 ];

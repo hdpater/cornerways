@@ -31,5 +31,12 @@ const EATERIES = [
     links: [
       { label: "Swanage visitor guide", url: "https://www.swanage.co.uk/" }
     ]
+  },
+  {
+    name: "Coastal Crust Pizza",
+    description: "Neapolitan-style wood-fired pizza just outside Swanage town centre — thin, light bases cooked hot in a Gozney oven, plus vegan cheese, gelato, and cocktails. Popular, so book ahead. Eat in or takeaway.",
+    links: [
+      { label: "Website", url: "https://www.coastalcrust.co.uk/" }
+    ]
   }
 ];

@@ -40,5 +40,20 @@ const PLACES = [
     links: [
       { label: "National Trust walk guide", url: "https://www.nationaltrust.org.uk/visit/dorset/studland-bay/old-harry-rocks-walk" }
     ]
+  },
+  {
+    name: "The Etches Collection",
+    description: "A modern fossil museum in Kimmeridge built around one man's lifetime collection of Jurassic marine fossils — sea monsters, ichthyosaurs and the famous pliosaur skull. A great rainy-day option.",
+    links: [
+      { label: "Official site", url: "https://www.theetchescollection.org/" }
+    ]
+  },
+  {
+    name: "Upton House & Country Park",
+    description: "A Georgian mansion in 160 acres of gardens, woodland and shoreline on Poole Harbour — free admission, with a tea room and walking trails. A bit further afield (over towards Poole), good for a change of scene.",
+    links: [
+      { label: "Official site", url: "https://uptoncountrypark.com/" },
+      { label: "Directions from the cottage", url: "https://maps.app.goo.gl/qbkuEXpGs3PgCH3w5?g_st=ic" }
+    ]
   }
 ];
