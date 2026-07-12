@@ -37,37 +37,8 @@
 
   <section>
     <div class="wrap">
-      <div class="grid cols-2">
-        <div class="route-card">
-          <span class="tag accent">Signature loop</span>
-          <h3>Worth Matravers → Winspit → Dancing Ledge → Priest's Way</h3>
-          <div class="stats"><span><b>~5–6 mi</b></span><span><b>2.5–3 hr</b> walking</span><span><b>~250m</b> ascent</span><span>Moderate</span></div>
-          <p>Straight out of the village down to the eerie abandoned stone-quarry caves at Winspit, then along the coast path to the flat quarried shelf of Dancing Ledge — a favourite spot to swim in the old tidal pool. Loop back inland along the Priest's Way, the medieval path once walked by the parish priest on his way to Swanage.</p>
-          <p><a class="rlink" href="https://www.alltrails.com/trail/england/dorset/worth-matravers-and-priest-s-way-circular" target="_blank" rel="noopener">Route on AllTrails →</a></p>
-        </div>
-
-        <div class="route-card">
-          <span class="tag">Coast path</span>
-          <h3>Dancing Ledge — Winspit — St Aldhelm's Head loop</h3>
-          <div class="stats"><span><b>~5.1 mi</b></span><span><b>~2 hr 20</b></span><span><b>~250m</b> ascent</span><span>Moderate</span></div>
-          <p>A well-loved circular that strings together Dancing Ledge, Winspit and the dramatic headland at St Aldhelm's Head. A popular route for both hikers and trail runners, with birdlife along the cliffs for most of the year.</p>
-          <p><a class="rlink" href="https://www.alltrails.com/trail/england/dorset/worth-matravers-and-priest-s-way-circular" target="_blank" rel="noopener">Route details →</a></p>
-        </div>
-
-        <div class="route-card">
-          <span class="tag">Ancient path</span>
-          <h3>The Priest's Way to Swanage</h3>
-          <div class="stats"><span><b>~4.75 km</b> one way</span><span>Easy</span><span>Flat / gentle</span></div>
-          <p>A quiet, largely traffic-free track between dry-stone walls, connecting Worth Matravers to Swanage. A good out-and-back run, or use it to make a longer coastal loop by returning along the cliffs.</p>
-        </div>
-
-        <div class="route-card">
-          <span class="tag">Quarry &amp; caves</span>
-          <h3>Winspit &amp; Seacombe loop from Langton Matravers</h3>
-          <div class="stats"><span><b>~9.5 km</b></span><span><b>~2 hr 40</b></span><span>Moderate</span></div>
-          <p>Takes in the old sea-cliff quarries at Seacombe and Winspit, both once central to the Purbeck stone trade and now atmospheric, half-wild places to explore — bring a torch if you want to poke into the quarry caves.</p>
-          <p><a class="rlink" href="https://www.komoot.com/smarttour/516386" target="_blank" rel="noopener">GPS route on Komoot →</a></p>
-        </div>
+      <div class="grid cols-2" id="walks-list">
+        <!-- Populated automatically from walks-data.js — see that file to add a route -->
       </div>
 
       <div class="card" style="margin-top:20px;">
@@ -119,11 +90,8 @@
 
   <section>
     <div class="wrap">
-      <div class="grid cols-3">
-        <div class="card"><h3>🍺 The Square and Compass</h3><p style="margin-bottom:0;">Worth Matravers' famously unspoilt village pub — pasties, local cider, and a small on-site museum of fossils. A couple of minutes' walk.</p></div>
-        <div class="card"><h3>🫖 Tea &amp; Supper Room</h3><p style="margin-bottom:0;">By the village pond — a good stop for a cream tea before or after a walk.</p></div>
-        <div class="card"><h3>🏘️ Langton Matravers</h3><p style="margin-bottom:0;">1.5 miles away, with further pubs and restaurants, plus the main parking for Dancing Ledge.</p></div>
-        <div class="card"><h3>🎡 Swanage</h3><p style="margin-bottom:0;">Under 6 miles east — plenty of restaurants and cafés along the seafront and town centre for a change of pace.</p></div>
+      <div class="grid cols-3" id="eat-list">
+        <!-- Populated automatically from eat-data.js — see that file to add a place -->
       </div>
     </div>
   </section>
@@ -141,12 +109,8 @@
 
   <section>
     <div class="wrap">
-      <div class="grid cols-3">
-        <div class="card"><h3>🏖️ Chapman's Pool</h3><p style="margin-bottom:0;">A secluded bay within easy reach of the cottage, popular with walkers and sea kayakers alike.</p></div>
-        <div class="card"><h3>🏰 Corfe Castle</h3><p style="margin-bottom:0;">The romantic ruined castle and its village, about 4 miles away, with far-reaching views over the Isle of Purbeck.</p></div>
-        <div class="card"><h3>🎡 Swanage</h3><p style="margin-bottom:0;">Under 6 miles east — a Victorian pier, sandy beach, and plenty of shops for a change of pace.</p></div>
-        <div class="card"><h3>🗼 Durlston Country Park &amp; Anvil Point</h3><p style="margin-bottom:0;">A cliff-top country park with a proper lighthouse and great coastal views — good for a shorter outing.</p></div>
-        <div class="card"><h3>🪨 Old Harry Rocks</h3><p style="margin-bottom:0;">Chalk sea stacks near Studland, at the eastern end of the Jurassic Coast — a classic Dorset photo stop.</p></div>
+      <div class="grid cols-3" id="visit-list">
+        <!-- Populated automatically from visit-data.js — see that file to add a place -->
       </div>
     </div>
   </section>
@@ -232,7 +196,10 @@
   </div>
 </footer>
 
+<script src="walks-data.js"></script>
 <script src="crags-data.js"></script>
+<script src="eat-data.js"></script>
+<script src="visit-data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

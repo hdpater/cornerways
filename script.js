@@ -1,24 +1,47 @@
 // Cornerways site — tab navigation, no page reloads, no dependencies.
 (function(){
-  // ---- Render crag cards from crags-data.js -----------------
-  function renderCrags(){
-    var container = document.getElementById('crags-list');
-    if (!container || typeof CRAGS === 'undefined') return;
-    container.innerHTML = CRAGS.map(function(crag){
-      var linksHtml = (crag.links || []).map(function(l){
-        return '<a class="rlink" href="' + l.url + '" target="_blank" rel="noopener">' + l.label + ' →</a>';
-      }).join('<br>');
-      return (
-        '<div class="route-card">' +
-          '<h3>' + crag.name + '</h3>' +
-          '<div class="stats"><span><b>' + (crag.style || '') + '</b></span><span>' + (crag.note || '') + '</span></div>' +
-          '<p>' + (crag.description || '') + '</p>' +
-          '<p>' + linksHtml + '</p>' +
-        '</div>'
-      );
-    }).join('');
+  function linksHtml(links){
+    return (links || []).map(function(l){
+      return '<a class="rlink" href="' + l.url + '" target="_blank" rel="noopener">' + l.label + ' →</a>';
+    }).join('<br>');
   }
-  renderCrags();
+
+  // ---- Route-style card (Walks, Climbing): name + stats line + description + links
+  function routeCardHtml(item){
+    var statLine = item.length || (item.style ? (item.style + (item.note ? ' · ' + item.note : '')) : (item.note || ''));
+    var links = linksHtml(item.links);
+    return (
+      '<div class="route-card">' +
+        '<h3>' + item.name + '</h3>' +
+        (statLine ? '<div class="stats"><span>' + statLine + '</span></div>' : '') +
+        '<p>' + (item.description || '') + '</p>' +
+        (links ? '<p>' + links + '</p>' : '') +
+      '</div>'
+    );
+  }
+
+  // ---- Simple card (Places to Eat, Places to Visit): name + description + links
+  function simpleCardHtml(item){
+    var links = linksHtml(item.links);
+    return (
+      '<div class="card">' +
+        '<h3>' + item.name + '</h3>' +
+        '<p style="margin-bottom:' + (links ? '8px' : '0') + ';">' + (item.description || '') + '</p>' +
+        (links ? '<p style="margin-bottom:0;">' + links + '</p>' : '') +
+      '</div>'
+    );
+  }
+
+  function renderInto(containerId, data, templateFn){
+    var el = document.getElementById(containerId);
+    if (!el || typeof data === 'undefined') return;
+    el.innerHTML = data.map(templateFn).join('');
+  }
+
+  renderInto('walks-list', typeof WALKS !== 'undefined' ? WALKS : undefined, routeCardHtml);
+  renderInto('crags-list', typeof CRAGS !== 'undefined' ? CRAGS : undefined, routeCardHtml);
+  renderInto('eat-list', typeof EATERIES !== 'undefined' ? EATERIES : undefined, simpleCardHtml);
+  renderInto('visit-list', typeof PLACES !== 'undefined' ? PLACES : undefined, simpleCardHtml);
 
   // ---- Tabs --------------------------------------------------
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
@@ -49,7 +72,7 @@
   function routeFromHash(){
     var hash = window.location.hash.replace('#', '');
     if (!hash){ activate('walks'); return; }
-    var parts = hash.split('/'); // e.g. explore/climbing
+    var parts = hash.split('/');
     activate(parts[0], parts[1]);
   }
 
@@ -59,7 +82,6 @@
     });
   });
 
-  // Any in-page link like href="#explore/climbing" also routes through here
   window.addEventListener('hashchange', routeFromHash);
   routeFromHash();
 })();
