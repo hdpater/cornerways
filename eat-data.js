@@ -14,13 +14,6 @@ const EATERIES = [
     ]
   },
   {
-    name: "Worth Matravers Tea & Supper Room",
-    description: "By the village pond — a good stop for a cream tea before or after a walk. Also open some evenings for suppers (booking recommended).",
-    links: [
-      { label: "Facebook page", url: "https://www.facebook.com/WorthMatraversTeaSupperRoom" }
-    ]
-  },
-  {
     name: "Langton Matravers",
     description: "1.5 miles away, with further pubs and restaurants, plus the main parking for Dancing Ledge.",
     links: []
