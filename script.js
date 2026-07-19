@@ -43,6 +43,52 @@
   renderInto('eat-list', typeof EATERIES !== 'undefined' ? EATERIES : undefined, simpleCardHtml);
   renderInto('visit-list', typeof PLACES !== 'undefined' ? PLACES : undefined, simpleCardHtml);
 
+  // ---- Bin & recycling schedule (live from Dorset Council's own data API) ----
+  function loadBinSchedule(){
+    var el = document.getElementById('bin-schedule');
+    if (!el) return;
+
+    var UPRN = '100040613119';
+    var API_KEY = 'tJUk7ng0hix0PrY951fL';
+    var SERVICES = [
+      { code: 'refuseday', label: 'Rubbish' },
+      { code: 'recyclingday', label: 'Recycling' },
+      { code: 'gardenwasteday', label: 'Garden waste' },
+      { code: 'foodwasteday', label: 'Food waste' }
+    ];
+    var DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    function formatDate(iso){
+      var d = new Date(iso + 'T00:00:00');
+      return DAY_NAMES[d.getDay()] + ' ' + d.getDate() + ' ' + MONTH_NAMES[d.getMonth()];
+    }
+
+    Promise.all(SERVICES.map(function(service){
+      return fetch('https://geoapi.dorsetcouncil.gov.uk/v1/Services/' + service.code + '/' + UPRN, {
+        headers: { 'X-API-Key': API_KEY }
+      })
+        .then(function(res){ return res.ok ? res.json() : null; })
+        .then(function(data){
+          var v = data && data.values && data.values[0];
+          return v && v.dateNextVisit ? { label: service.label, date: v.dateNextVisit, frequency: v.frequency } : null;
+        })
+        .catch(function(){ return null; });
+    })).then(function(results){
+      var rows = results.filter(Boolean);
+      if (!rows.length){
+        el.innerHTML = '<p style="margin:0;"><em>Live schedule unavailable right now — use the links below.</em></p>';
+        return;
+      }
+      rows.sort(function(a, b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+      el.innerHTML = '<ul style="margin:0; padding-left:1.1em;">' + rows.map(function(r){
+        return '<li style="margin-bottom:6px;"><strong>' + r.label + '</strong> — ' + formatDate(r.date) +
+          ' <span style="color:#9a9789;">(' + r.frequency.toLowerCase() + ')</span></li>';
+      }).join('') + '</ul>';
+    });
+  }
+  loadBinSchedule();
+
   // ---- Tabs --------------------------------------------------
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
   var panels  = Array.prototype.slice.call(document.querySelectorAll('.tab-panel'));
