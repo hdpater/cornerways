@@ -92,8 +92,7 @@
         labelsByUrl[r.url].push(r.label);
       });
       var calendarLinks = urlOrder.map(function(url){
-        return '<a class="rlink" href="' + url + '" target="_blank" rel="noopener">View, download and print your ' +
-          labelsByUrl[url].join(' &amp; ').toLowerCase() + ' calendar →</a>';
+        return '<a class="rlink" href="' + url + '" target="_blank" rel="noopener">labelsByUrl[url].join(' &amp; ').toLowerCase() + ' calendar →</a>';
       }).join('<br>');
 
       el.innerHTML = '<ul style="margin:0; padding-left:1.1em;">' + rows.map(function(r){
