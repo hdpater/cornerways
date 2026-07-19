@@ -71,7 +71,7 @@
         .then(function(res){ return res.ok ? res.json() : null; })
         .then(function(data){
           var v = data && data.values && data.values[0];
-          return v && v.dateNextVisit ? { label: service.label, date: v.dateNextVisit, frequency: v.frequency } : null;
+          return v && v.dateNextVisit ? { label: service.label, date: v.dateNextVisit, frequency: v.frequency, url: v.url } : null;
         })
         .catch(function(){ return null; });
     })).then(function(results){
@@ -81,10 +81,26 @@
         return;
       }
       rows.sort(function(a, b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+
+      // Several bin types share the same round calendar — group the links so
+      // we don't print the same "view/download/print" link three times over.
+      var labelsByUrl = {};
+      var urlOrder = [];
+      rows.forEach(function(r){
+        if (!r.url) return;
+        if (!labelsByUrl[r.url]){ labelsByUrl[r.url] = []; urlOrder.push(r.url); }
+        labelsByUrl[r.url].push(r.label);
+      });
+      var calendarLinks = urlOrder.map(function(url){
+        return '<a class="rlink" href="' + url + '" target="_blank" rel="noopener">View, download and print your ' +
+          labelsByUrl[url].join(' &amp; ').toLowerCase() + ' calendar →</a>';
+      }).join('<br>');
+
       el.innerHTML = '<ul style="margin:0; padding-left:1.1em;">' + rows.map(function(r){
         return '<li style="margin-bottom:6px;"><strong>' + r.label + '</strong> — ' + formatDate(r.date) +
           ' <span style="color:#9a9789;">(' + r.frequency.toLowerCase() + ')</span></li>';
-      }).join('') + '</ul>';
+      }).join('') + '</ul>' +
+      (calendarLinks ? '<p style="margin:10px 0 0;">' + calendarLinks + '</p>' : '');
     });
   }
   loadBinSchedule();
