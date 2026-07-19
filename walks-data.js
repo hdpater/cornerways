@@ -185,5 +185,37 @@ const WALKS = [
     links: [
       { label: "Route details (AllTrails)", url: "https://www.alltrails.com/trail/england/dorset/seacombe-cliff-winspit-quarry-and-st-aldhelm-s-chapel-circular" }
     ]
+  },
+
+  /* ---- Circular walks starting at Kingston and Studland ---- */
+  {
+    name: "Kingston to Swyre Head & Heaven's Gate Walk",
+    length: "~2 mi · 1 hr · ~63m ascent · Easy",
+    lengthMi: 2,
+    coords: [50.6130469, -2.0814237],
+    description: "A short, high-reward loop from Kingston up onto the ridge past Heaven's Gate — reckoned one of the best views in Dorset — and on to the trig point at Swyre Head, looking out over Kimmeridge Bay and the whole Jurassic Coast.",
+    links: [
+      { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/kingston-walks/" }
+    ]
+  },
+  {
+    name: "Studland to Old Harry Rocks Walk",
+    length: "~4 mi · 2 hr 10 · ~294m ascent · Easy",
+    lengthMi: 4,
+    coords: [50.6422222, -1.9482568],
+    description: "From the village down to the dramatic chalk stacks of Old Harry Rocks, then along the coast path towards Ballard Point and the Purbeck Way, climbing to the Obelisk before looping back through fields past Studland's Norman church.",
+    links: [
+      { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/studland-old-harry-rocks-walk/" }
+    ]
+  },
+  {
+    name: "Studland to Agglestone Rock Walk",
+    length: "~3.2 mi · 1 hr 20 · ~72m ascent · Easy",
+    lengthMi: 3.2,
+    coords: [50.6422222, -1.9482568],
+    description: "Heads inland across Studland's heathland to the Agglestone — a striking 400-tonne sandstone boulder left standing alone by centuries of erosion — with views back over Poole Harbour and the Purbeck Hills.",
+    links: [
+      { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/studland-walks/" }
+    ]
   }
 ];
