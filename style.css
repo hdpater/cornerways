@@ -165,6 +165,30 @@ a:focus-visible, button:focus-visible, summary:focus-visible{ outline: 3px solid
 
 a.tag{ text-decoration:none; }
 
+/* ---------- Filter bar ---------- */
+.filter-bar{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin: 0 0 20px; }
+.filter-input{
+  flex: 1 1 200px; min-width: 160px; font-family: var(--body); font-size:.92rem; color: var(--ink);
+  background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px;
+}
+.filter-input::placeholder{ color: var(--muted); }
+.filter-select{
+  font-family: var(--body); font-size:.88rem; font-weight:600; color: var(--ink);
+  background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; cursor:pointer;
+}
+.filter-clear{
+  font-family: var(--body); font-size:.85rem; font-weight:600; color: var(--muted);
+  background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor:pointer;
+  transition: color .15s ease, border-color .15s ease;
+}
+.filter-clear:hover{ color: var(--ink); border-color: var(--accent); }
+.filter-count{ font-family: var(--mono); font-size:.76rem; color: var(--muted); margin-left:auto; white-space:nowrap; }
+.filter-empty{ grid-column: 1 / -1; color: var(--muted); font-style: italic; }
+.filter-empty .filter-clear-inline{
+  background:none; border:none; padding:0; margin:0; font: inherit; color: var(--accent);
+  text-decoration: underline; text-underline-offset:3px; cursor:pointer;
+}
+
 /* ---------- Accordion ---------- */
 .accordion{ background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow:hidden; margin-bottom: 12px; }
 .accordion summary{

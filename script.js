@@ -32,16 +32,108 @@
     );
   }
 
-  function renderInto(containerId, data, templateFn){
-    var el = document.getElementById(containerId);
-    if (!el || typeof data === 'undefined') return;
-    el.innerHTML = data.map(templateFn).join('');
+  // ---- Distance from Cornerways (Worth Matravers village car park) ----
+  var CORNERWAYS_COORDS = [50.5956, -2.0396];
+
+  function haversineMiles(a, b){
+    var R = 3958.8; // Earth radius, miles
+    var toRad = function(d){ return d * Math.PI / 180; };
+    var dLat = toRad(b[0] - a[0]);
+    var dLon = toRad(b[1] - a[1]);
+    var lat1 = toRad(a[0]), lat2 = toRad(b[0]);
+    var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    return R * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
   }
 
-  renderInto('walks-list', typeof WALKS !== 'undefined' ? WALKS : undefined, routeCardHtml);
-  renderInto('crags-list', typeof CRAGS !== 'undefined' ? CRAGS : undefined, routeCardHtml);
-  renderInto('eat-list', typeof EATERIES !== 'undefined' ? EATERIES : undefined, simpleCardHtml);
-  renderInto('visit-list', typeof PLACES !== 'undefined' ? PLACES : undefined, simpleCardHtml);
+  // ---- Reusable filter bar + live-filtered list. Used by all four
+  // data-driven tabs (Walks, Climbing, Places to Eat, Places to Visit).
+  function initFilterable(containerId, data, templateFn, opts){
+    opts = opts || {};
+    var container = document.getElementById(containerId);
+    if (!container || typeof data === 'undefined') return;
+
+    var entries = data.map(function(item){
+      return { item: item, distanceMi: item.coords ? haversineMiles(CORNERWAYS_COORDS, item.coords) : null };
+    });
+
+    var state = { q: '', maxDist: '', lenRange: '' };
+
+    var bar = document.createElement('div');
+    bar.className = 'filter-bar';
+    bar.innerHTML =
+      '<input type="search" class="filter-input" placeholder="Search ' + (opts.noun || 'entries') + '…" aria-label="Search ' + (opts.noun || 'entries') + '">' +
+      '<select class="filter-select filter-distance" aria-label="Maximum distance from Cornerways">' +
+        '<option value="">Any distance</option>' +
+        '<option value="1">Under 1 mi</option>' +
+        '<option value="3">Under 3 mi</option>' +
+        '<option value="6">Under 6 mi</option>' +
+        '<option value="15">Under 15 mi</option>' +
+      '</select>' +
+      (opts.hasLength ?
+        '<select class="filter-select filter-length" aria-label="Walk length">' +
+          '<option value="">Any length</option>' +
+          '<option value="0-3">Under 3 mi</option>' +
+          '<option value="3-5">3–5 mi</option>' +
+          '<option value="5-999">5+ mi</option>' +
+        '</select>'
+        : '') +
+      '<button type="button" class="filter-clear">Clear filters</button>' +
+      '<span class="filter-count"></span>';
+    container.parentNode.insertBefore(bar, container);
+
+    var inputEl = bar.querySelector('.filter-input');
+    var distEl = bar.querySelector('.filter-distance');
+    var lenEl = bar.querySelector('.filter-length');
+    var countEl = bar.querySelector('.filter-count');
+
+    function matches(entry){
+      var item = entry.item;
+      if (state.q){
+        var haystack = [item.name, item.description, item.style, item.note, item.length]
+          .filter(Boolean).join(' ').toLowerCase();
+        if (haystack.indexOf(state.q.toLowerCase()) === -1) return false;
+      }
+      if (state.maxDist && entry.distanceMi !== null && entry.distanceMi > parseFloat(state.maxDist)) return false;
+      if (opts.hasLength && state.lenRange && typeof item.lengthMi === 'number'){
+        var range = state.lenRange.split('-');
+        if (item.lengthMi < parseFloat(range[0]) || item.lengthMi > parseFloat(range[1])) return false;
+      }
+      return true;
+    }
+
+    function clearFilters(){
+      state = { q: '', maxDist: '', lenRange: '' };
+      inputEl.value = '';
+      distEl.value = '';
+      if (lenEl) lenEl.value = '';
+      render();
+    }
+
+    function render(){
+      var filtered = entries.filter(matches).map(function(e){ return e.item; });
+      container.innerHTML = filtered.length
+        ? filtered.map(templateFn).join('')
+        : '<p class="filter-empty">No matches — try adjusting or <button type="button" class="filter-clear-inline">clearing the filters</button>.</p>';
+      countEl.textContent = filtered.length === entries.length
+        ? entries.length + (entries.length === 1 ? ' entry' : ' entries')
+        : 'Showing ' + filtered.length + ' of ' + entries.length;
+      var inlineClear = container.querySelector('.filter-clear-inline');
+      if (inlineClear) inlineClear.addEventListener('click', clearFilters);
+    }
+
+    inputEl.addEventListener('input', function(e){ state.q = e.target.value; render(); });
+    distEl.addEventListener('change', function(e){ state.maxDist = e.target.value; render(); });
+    if (lenEl) lenEl.addEventListener('change', function(e){ state.lenRange = e.target.value; render(); });
+    bar.querySelector('.filter-clear').addEventListener('click', clearFilters);
+
+    render();
+  }
+
+  initFilterable('walks-list', typeof WALKS !== 'undefined' ? WALKS : undefined, routeCardHtml, { noun: 'walks', hasLength: true });
+  initFilterable('crags-list', typeof CRAGS !== 'undefined' ? CRAGS : undefined, routeCardHtml, { noun: 'crags' });
+  initFilterable('eat-list', typeof EATERIES !== 'undefined' ? EATERIES : undefined, simpleCardHtml, { noun: 'places to eat' });
+  initFilterable('visit-list', typeof PLACES !== 'undefined' ? PLACES : undefined, simpleCardHtml, { noun: 'places to visit' });
 
   // ---- Bin & recycling schedule (live from Dorset Council's own data API) ----
   function loadBinSchedule(){
