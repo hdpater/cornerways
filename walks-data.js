@@ -45,5 +45,71 @@ const WALKS = [
     links: [
       { label: "Directions from the cottage", url: "https://maps.app.goo.gl/PrNyb8HRxaPnuJYo6?g_st=ic" }
     ]
+  },
+
+  /* ---- Circular walks starting & ending at Worth Matravers, via dorsetwalks.co.uk ---- */
+  {
+    name: "Worth Matravers to Seacombe & Winspit Walk",
+    length: "~2.9 mi · 1 hr 45 · ~135m ascent · Easy",
+    description: "An easy stroll across farmland and down a sheltered valley to the abandoned stone quarry at Seacombe, then along the clifftop to another old quarry at Winspit before returning to the village on a surfaced track. A good introduction to the area for first-time visitors.",
+    links: [
+      { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/worth-matravers-seacombe-winspit-walk/" }
+    ]
+  },
+  {
+    name: "Worth Matravers to Winspit & St Aldhelm's Head Walk",
+    length: "~4.4 mi · 2 hr 30 · ~170m ascent · Easy",
+    description: "Follows a track down to the old stone quarry at Winspit, then joins the South West Coast Path along exposed clifftops to St Aldhelm's Head, home to a small chapel, the Coastguard Lookout Station and the Purbeck Radar Memorial.",
+    links: [
+      { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/worth-matravers-winspit-st-aldhelms-head-walk/" }
+    ]
+  },
+  {
+    name: "Worth Matravers to Seacombe & St Aldhelm's Head Walk",
+    length: "~5.2 mi · 2 hr 45 · ~210m ascent · Easy",
+    description: "A longer coastal circuit combining the Seacombe quarry with St Aldhelm's Head, following the cliff path along this stretch of the Purbeck coast before heading back inland to the village.",
+    links: [
+      { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/worth-matravers-walks/" }
+    ]
+  },
+  {
+    name: "Worth Matravers to Seacombe & Chapman's Pool Walk",
+    length: "~5.3 mi · 2 hr 55 · ~276m ascent · Medium",
+    description: "Links the old Seacombe quarry with the secluded shingle cove at Chapman's Pool — a longer, hillier circuit with some steeper sections along the cliffs.",
+    links: [
+      { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/worth-matravers-walks/" }
+    ]
+  },
+  {
+    name: "Worth Matravers to St Aldhelm's Head & Chapman's Pool Walk",
+    length: "~2.9 mi · 1 hr 30 · ~120m ascent · Medium",
+    description: "Starts from the Renscombe car park just past the village and heads to St Aldhelm's Head — passing the chapel, Coastguard Lookout Station and Radar Memorial — before crossing the steep valley at Emmetts Hill to the viewpoint above Chapman's Pool.",
+    links: [
+      { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/worth-matravers-chapmans-pool/" }
+    ]
+  },
+  {
+    name: "Worth Matravers to Chapman's Pool & Kingston Walk",
+    length: "~6.2 mi · 2 hr 45 · ~234m ascent · Easy",
+    description: "The longest of the circuits, also starting from the Renscombe car park — reaching Chapman's Pool before heading inland to the village of Kingston, with its own pub, for the return leg.",
+    links: [
+      { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/worth-matravers-walks/" }
+    ]
+  },
+  {
+    name: "Worth Matravers to Seacombe & Dancing Ledge Walk",
+    length: "~4.5 mi · 2 hr 20 · ~254m ascent · Moderate",
+    description: "Heads east from the village via the Seacombe quarry to Dancing Ledge, the flat quarried shelf that's a popular wild-swimming spot, before looping back.",
+    links: [
+      { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/worth-matravers-walks/" }
+    ]
+  },
+  {
+    name: "Worth Matravers to Winspit & Dancing Ledge Walk",
+    length: "~5.5 mi · 2 hr 55 · ~301m ascent · Moderate",
+    description: "The longer of the two Dancing Ledge routes, taking in Winspit's quarry caves on the way as well — a good full-morning circuit combining several of the area's best-known coastal features.",
+    links: [
+      { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/worth-matravers-walks/" }
+    ]
   }
 ];
