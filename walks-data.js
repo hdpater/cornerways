@@ -17,11 +17,11 @@ const WALKS = [
     ]
   },
   {
-    name: "Dancing Ledge — Winspit — St Aldhelm's Head loop",
-    length: "~5.1 mi · ~2 hr 20 · ~250m ascent · Moderate",
-    description: "A well-loved circular that strings together Dancing Ledge, Winspit and the dramatic headland at St Aldhelm's Head. A popular route for both hikers and trail runners, with birdlife along the cliffs for most of the year.",
+    name: "Worth Matravers, Winspit & St Aldhelm's Head Circular",
+    length: "~4.7 mi · ~2 hr 30–3 hr · ~285m ascent · Moderate",
+    description: "A well-loved circular down to the old quarry at Winspit, then along the coast path to the dramatic headland at St Aldhelm's Head — its chapel, coastguard lookout and radar memorial — before looping back to the village. Popular with both hikers and trail runners.",
     links: [
-      { label: "Route details (AllTrails)", url: "https://www.alltrails.com/trail/england/dorset/worth-matravers-and-priest-s-way-circular" }
+      { label: "Route details (AllTrails)", url: "https://www.alltrails.com/trail/england/dorset/worth-matravers-winspit-and-st-aldhelms-head-circular" }
     ]
   },
   {
@@ -110,6 +110,41 @@ const WALKS = [
     description: "The longer of the two Dancing Ledge routes, taking in Winspit's quarry caves on the way as well — a good full-morning circuit combining several of the area's best-known coastal features.",
     links: [
       { label: "Route details (Dorset Walks)", url: "https://www.dorsetwalks.co.uk/worth-matravers-walks/" }
+    ]
+  },
+
+  /* ---- Circular walks starting & ending at Worth Matravers, from other sources ---- */
+  {
+    name: "Worth Matravers, Winspit Quarry & St Aldhelm's Head Circular",
+    length: "~4.3 mi · GPX download available",
+    description: "Heads south along Winspit Bottom to the coastal Winspit Quarries, then follows the coast path west to St Aldhelm's Chapel, passing Emmetts Hill (Royal Marines memorial) with an optional detour to Chapman's Pool, before returning via Renscombe Farm.",
+    links: [
+      { label: "Route details (GPS Routes)", url: "https://www.gps-routes.co.uk/routes/home.nsf/RoutesLinksWalks/worth-matravers-and-st-aldhelms-head-circular-walk-walking-route" }
+    ]
+  },
+  {
+    name: "Worth Matravers Circular Walk",
+    length: "~6.2 mi · 4 hr (up to 6 with stops) · Hard — two steep descents/ascents",
+    description: "Passes the Keates Quarry dinosaur footprints before dropping to the South West Coast Path, taking in Winspit quarry, the radar memorial at St Aldhelm's Head, and Chapman's Pool — good for swimming and fossil-hunting if you've time to linger.",
+    links: [
+      { label: "Route details (Walking Club)", url: "https://www.walkingclub.org.uk/walk/worth-matravers-circular/" }
+    ]
+  },
+  {
+    name: "Smugglers Ways",
+    length: "~3 mi · Easy",
+    description: "An official Dorset Council trail past Winspit Quarry and along the coast path to Seacombe, following the route once used by smugglers to store contraband in the cliffside caves and tunnels. Starts from the car park nearest the pub (donation requested).",
+    links: [
+      { label: "Route details (Dorset Council)", url: "https://www.dorsetcouncil.gov.uk/w/smugglers-ways" },
+      { label: "Smugglers Ways leaflet (PDF)", url: "https://www.dorsetcouncil.gov.uk/documents/35024/283293/Smugglers-Way-leaflet.pdf/31216a0c-d7b4-c074-2176-d9f9f0c3d3a2?version=1.0&t=1619391187342" }
+    ]
+  },
+  {
+    name: "Seacombe Cliff, Winspit Quarry & St Aldhelm's Chapel Circular",
+    length: "~5.9 mi · 3–3.5 hr · ~345m ascent · Moderate",
+    description: "From the village down to Seacombe Cliff, on to Winspit Quarry, then along the coast path past St Aldhelm's Chapel and Chapman's Pool on the way back.",
+    links: [
+      { label: "Route details (AllTrails)", url: "https://www.alltrails.com/trail/england/dorset/seacombe-cliff-winspit-quarry-and-st-aldhelm-s-chapel-circular" }
     ]
   }
 ];
