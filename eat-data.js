@@ -22,20 +22,6 @@ const EATERIES = [
     ]
   },
   {
-    name: "Langton Matravers",
-    coords: [50.6089791, -1.9891330],
-    description: "1.5 miles away, with further pubs and restaurants, plus the main parking for Dancing Ledge.",
-    links: []
-  },
-  {
-    name: "Swanage",
-    coords: [50.6092394, -1.9581730],
-    description: "Under 6 miles east — plenty of restaurants and cafés along the seafront and town centre for a change of pace.",
-    links: [
-      { label: "Swanage visitor guide", url: "https://www.swanage.co.uk/" }
-    ]
-  },
-  {
     name: "Coastal Crust Pizza",
     coords: [50.6140640, -1.9743057],
     description: "Neapolitan-style wood-fired pizza just outside Swanage town centre — thin, light bases cooked hot in a Gozney oven, plus vegan cheese, gelato, and cocktails. Popular, so book ahead. Eat in or takeaway.",
