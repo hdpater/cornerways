@@ -14,14 +14,6 @@
 
 const PLACES = [
   {
-    name: "Chapman's Pool",
-    coords: [50.59257, -2.06444],
-    description: "A secluded bay within easy reach of the cottage, popular with walkers and sea kayakers alike.",
-    links: [
-      { label: "Visitor guide (Swanage.co.uk)", url: "https://www.swanage.co.uk/chapmans-pool/" }
-    ]
-  },
-  {
     name: "Corfe Castle",
     coords: [50.6383973, -2.0576054],
     description: "The romantic ruined castle and its village, about 4 miles away, with far-reaching views over the Isle of Purbeck.",
@@ -43,14 +35,6 @@ const PLACES = [
     description: "A cliff-top country park with a proper lighthouse and great coastal views — good for a shorter outing.",
     links: [
       { label: "Official site", url: "https://www.durlston.co.uk/" }
-    ]
-  },
-  {
-    name: "Old Harry Rocks",
-    coords: [50.6424, -1.9236],
-    description: "Chalk sea stacks near Studland, at the eastern end of the Jurassic Coast — a classic Dorset photo stop.",
-    links: [
-      { label: "National Trust walk guide", url: "https://www.nationaltrust.org.uk/visit/dorset/studland-bay/old-harry-rocks-walk" }
     ]
   },
   {
