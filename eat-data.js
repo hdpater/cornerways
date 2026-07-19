@@ -93,5 +93,13 @@ const EATERIES = [
     links: [
       { label: "Facebook page", url: "https://www.facebook.com/javaindependentcoffeehouse/" }
     ]
+  },
+  {
+    name: "The 1859 Pier Cafe & Bistro",
+    coords: [50.6076188, -1.9516524],
+    description: "Right on the end of Swanage Pier, with views straight out over the bay — everything from cream teas and barista coffee through to seafood, steaks and gourmet burgers, fully licensed. Open daily.",
+    links: [
+      { label: "Website", url: "https://pier1859bistro.co.uk/" }
+    ]
   }
 ];
