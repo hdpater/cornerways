@@ -81,7 +81,7 @@ const EATERIES = [
   },
   {
     name: "Chococo",
-    coords: [50.6077, -1.9578],
+    coords: [50.608784, -1.958074],
     description: "Award-winning chocolate house and café on Commercial Road — Swanage is where it all started back in 2002. Hot chocolate, gelato, cakes and toasties alongside the chocolate shop.",
     links: [
       { label: "Website", url: "https://www.chococo.co.uk/our-chocolate-houses/swanage" }
