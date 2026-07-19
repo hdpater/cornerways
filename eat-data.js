@@ -38,5 +38,62 @@ const EATERIES = [
     links: [
       { label: "Website", url: "https://www.coastalcrust.co.uk/" }
     ]
+  },
+  {
+    name: "The Scott Arms",
+    description: "A proper stone-built pub in Kingston with arguably the best view in Dorset — a huge garden looking straight down over Corfe Castle. Locally sourced, seasonal specials alongside pub favourites, plus a summer outdoor Burger Shak.",
+    links: [
+      { label: "Website", url: "https://thescottarms.com/" }
+    ]
+  },
+  {
+    name: "The Italian Kitchen & Italian Bakery",
+    description: "Two related spots on and near Wareham Quay: The Italian Kitchen for a proper sit-down Italian/British menu, and The Italian Bakery just up the road for handmade sourdough, pastries and coffee to take away.",
+    links: [
+      { label: "Italian Kitchen website", url: "https://www.theitaliankitchendorset.com/" },
+      { label: "Italian Bakery website", url: "https://theitalianbakery.co.uk/" }
+    ]
+  },
+  {
+    name: "Isle of Purbeck Golf Club",
+    description: "Sunday lunch with a panoramic dining-room view over Studland Bay and Poole Harbour — a table d'hôte menu served daily, 12–3pm. Booking recommended.",
+    links: [
+      { label: "Restaurant & booking", url: "https://www.purbeckgolf.co.uk/restaurant" }
+    ]
+  },
+  {
+    name: "National Trust Tea-room, Corfe Castle",
+    description: "A cosy 18th-century cottage in the village serving hot food, cakes and famously indulgent cream teas — sit in the rear garden for uninterrupted views of the castle ruins. Dog-friendly, with ice cream for them too.",
+    links: [
+      { label: "Website", url: "https://www.nationaltrust.org.uk/visit/dorset/corfe-castle/eating-and-shopping-at-corfe-castle" }
+    ]
+  },
+  {
+    name: "The Fish Plaice",
+    description: "Swanage's well-known \"blue chippy\" near the seafront — cod and haddock cut fresh on site, chips from whole potatoes, and good home-made fishcakes. Monthly gluten-free frying days.",
+    links: [
+      { label: "Website", url: "http://www.fishplaice.co.uk/" }
+    ]
+  },
+  {
+    name: "Chococo",
+    description: "Award-winning chocolate house and café on Commercial Road — Swanage is where it all started back in 2002. Hot chocolate, gelato, cakes and toasties alongside the chocolate shop.",
+    links: [
+      { label: "Website", url: "https://www.chococo.co.uk/our-chocolate-houses/swanage" }
+    ]
+  },
+  {
+    name: "Fortes Gelateria",
+    description: "Family-run Italian gelato on Swanage seafront since 1926, now four generations in — over twenty handcrafted flavours made on site.",
+    links: [
+      { label: "Website", url: "https://fortesgelato.co.uk/" }
+    ]
+  },
+  {
+    name: "Java Independent Coffee House",
+    description: "A relaxed, dog-friendly café on Commercial Road with genuinely good coffee, hearty breakfasts and cake — strong on vegetarian and vegan options.",
+    links: [
+      { label: "Facebook page", url: "https://www.facebook.com/javaindependentcoffeehouse/" }
+    ]
   }
 ];
