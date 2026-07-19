@@ -46,6 +46,77 @@
     return R * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
   }
 
+  // ---- Live map of the currently-filtered entries (Leaflet + OpenStreetMap) ----
+  var mapsByPanel = {};
+
+  function popupHtml(item){
+    var statLine = item.length || (item.style ? (item.style + (item.note ? ' · ' + item.note : '')) : '');
+    var firstLink = item.links && item.links[0];
+    return '<strong>' + item.name + '</strong>' +
+      (statLine ? '<br><span class="map-popup-stat">' + statLine + '</span>' : '') +
+      (firstLink ? '<br><a href="' + firstLink.url + '" target="_blank" rel="noopener">' + firstLink.label + ' →</a>' : '');
+  }
+
+  // Map is an enhancement layered on top of an external CDN dependency
+  // (Leaflet + OpenStreetMap tiles) — everything in here is defensive so a
+  // failure here (blocked CDN, offline, unexpected browser quirk) can never
+  // take down the tabs, filters, or bin schedule.
+  function createMapView(container){
+    if (typeof L === 'undefined') return null; // Leaflet failed to load
+
+    var mapEl;
+    try {
+      mapEl = document.createElement('div');
+      mapEl.className = 'map-view';
+      mapEl.setAttribute('role', 'img');
+      mapEl.setAttribute('aria-label', 'Map showing the locations currently listed');
+      container.parentNode.insertBefore(mapEl, container);
+
+      var map = L.map(mapEl, { scrollWheelZoom: false });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+        maxZoom: 19
+      }).addTo(map);
+
+      L.circleMarker(CORNERWAYS_COORDS, { radius: 8, color: '#2A2A26', weight: 2, fillColor: '#2A2A26', fillOpacity: 1 })
+        .addTo(map)
+        .bindTooltip('Cornerways', { permanent: true, direction: 'top', offset: [0, -6], className: 'map-tooltip' });
+
+      var markers = L.layerGroup().addTo(map);
+      var currentBounds = L.latLngBounds([CORNERWAYS_COORDS]);
+
+      // Panels start out hidden (display:none), so the map container has zero
+      // size when first created — fitBounds computed against that is wrong.
+      // refresh() re-measures and re-fits; called again once the tab is shown.
+      function refresh(){
+        try {
+          map.invalidateSize();
+          map.fitBounds(currentBounds, { padding: [30, 30], maxZoom: 15 });
+        } catch (e) { /* non-fatal — map just won't re-fit this time */ }
+      }
+
+      function update(items){
+        try {
+          markers.clearLayers();
+          currentBounds = L.latLngBounds([CORNERWAYS_COORDS]);
+          items.forEach(function(item){
+            if (!item.coords) return;
+            currentBounds.extend(item.coords);
+            L.circleMarker(item.coords, { radius: 7, color: '#52655C', weight: 2, fillColor: '#52655C', fillOpacity: 0.85 })
+              .addTo(markers)
+              .bindPopup(popupHtml(item));
+          });
+          refresh();
+        } catch (e) { /* non-fatal — list/cards already rendered independently */ }
+      }
+
+      return { map: map, update: update, refresh: refresh };
+    } catch (e) {
+      if (mapEl && mapEl.parentNode) mapEl.parentNode.removeChild(mapEl);
+      return null;
+    }
+  }
+
   // ---- Reusable filter bar + live-filtered list. Used by all four
   // data-driven tabs (Walks, Climbing, Places to Eat, Places to Visit).
   function initFilterable(containerId, data, templateFn, opts){
@@ -81,6 +152,9 @@
       '<button type="button" class="filter-clear">Clear filters</button>' +
       '<span class="filter-count"></span>';
     container.parentNode.insertBefore(bar, container);
+
+    var mapView = opts.showMap ? createMapView(container) : null;
+    if (mapView && opts.panel) mapsByPanel[opts.panel] = mapView;
 
     var inputEl = bar.querySelector('.filter-input');
     var distEl = bar.querySelector('.filter-distance');
@@ -120,6 +194,7 @@
         : 'Showing ' + filtered.length + ' of ' + entries.length;
       var inlineClear = container.querySelector('.filter-clear-inline');
       if (inlineClear) inlineClear.addEventListener('click', clearFilters);
+      if (mapView) mapView.update(filtered);
     }
 
     inputEl.addEventListener('input', function(e){ state.q = e.target.value; render(); });
@@ -130,10 +205,10 @@
     render();
   }
 
-  initFilterable('walks-list', typeof WALKS !== 'undefined' ? WALKS : undefined, routeCardHtml, { noun: 'walks', hasLength: true });
-  initFilterable('crags-list', typeof CRAGS !== 'undefined' ? CRAGS : undefined, routeCardHtml, { noun: 'crags' });
-  initFilterable('eat-list', typeof EATERIES !== 'undefined' ? EATERIES : undefined, simpleCardHtml, { noun: 'places to eat' });
-  initFilterable('visit-list', typeof PLACES !== 'undefined' ? PLACES : undefined, simpleCardHtml, { noun: 'places to visit' });
+  initFilterable('walks-list', typeof WALKS !== 'undefined' ? WALKS : undefined, routeCardHtml, { noun: 'walks', hasLength: true, showMap: true, panel: 'walks' });
+  initFilterable('crags-list', typeof CRAGS !== 'undefined' ? CRAGS : undefined, routeCardHtml, { noun: 'crags', showMap: true, panel: 'climbing' });
+  initFilterable('eat-list', typeof EATERIES !== 'undefined' ? EATERIES : undefined, simpleCardHtml, { noun: 'places to eat', showMap: true, panel: 'eat' });
+  initFilterable('visit-list', typeof PLACES !== 'undefined' ? PLACES : undefined, simpleCardHtml, { noun: 'places to visit', showMap: true, panel: 'visit' });
 
   // ---- Bin & recycling schedule (live from Dorset Council's own data API) ----
   function loadBinSchedule(){
@@ -213,6 +288,10 @@
     panels.forEach(function(p){
       p.hidden = p.dataset.panel !== name;
     });
+    if (mapsByPanel[name]){
+      // wait a tick for the panel to un-hide so the map container has a real size to measure
+      requestAnimationFrame(function(){ mapsByPanel[name].refresh(); });
+    }
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
     if (scrollToId){
       // wait a tick for the panel to un-hide before measuring position

@@ -189,6 +189,23 @@ a.tag{ text-decoration:none; }
   text-decoration: underline; text-underline-offset:3px; cursor:pointer;
 }
 
+/* ---------- Map ---------- */
+.map-view{
+  height: 320px; border-radius: var(--radius); overflow:hidden; border: 1px solid var(--line);
+  margin: 0 0 20px; box-shadow: var(--shadow); background: var(--surface);
+}
+@media (max-width: 560px){ .map-view{ height: 240px; } }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip{ background: var(--card); color: var(--ink); }
+.leaflet-popup-content{ font-family: var(--body); font-size:.88rem; margin: 10px 14px; }
+.leaflet-popup-content strong{ font-family: var(--display); }
+.leaflet-popup-content a{ color: var(--accent); }
+.map-popup-stat{ font-family: var(--mono); font-size:.72rem; color: var(--muted); }
+.map-tooltip{
+  font-family: var(--body); font-weight:700; font-size:.76rem; color: var(--ink);
+  background: var(--card); border: 1px solid var(--line); box-shadow: none;
+}
+.map-tooltip::before{ display:none; }
+
 /* ---------- Accordion ---------- */
 .accordion{ background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow:hidden; margin-bottom: 12px; }
 .accordion summary{
