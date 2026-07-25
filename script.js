@@ -312,9 +312,41 @@
   buttons.forEach(function(btn){
     btn.addEventListener('click', function(){
       window.location.hash = btn.dataset.tab;
+      closeMenu();
     });
   });
 
   window.addEventListener('hashchange', routeFromHash);
   routeFromHash();
+
+  // ---- Hamburger menu ------------------------------------------
+  var menuToggle = document.getElementById('menu-toggle');
+  var menu = document.getElementById('site-menu');
+
+  function closeMenu(){
+    menu.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function openMenu(){
+    menu.classList.add('open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+  }
+
+  if (menuToggle && menu){
+    menuToggle.addEventListener('click', function(){
+      var isOpen = menu.classList.contains('open');
+      if (isOpen) closeMenu(); else openMenu();
+    });
+
+    document.addEventListener('click', function(e){
+      if (!menu.classList.contains('open')) return;
+      if (menu.contains(e.target) || menuToggle.contains(e.target)) return;
+      closeMenu();
+    });
+
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') closeMenu();
+    });
+  }
 })();
