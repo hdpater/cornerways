@@ -135,7 +135,7 @@
     bar.innerHTML =
       '<input type="search" class="filter-input" placeholder="Search ' + (opts.noun || 'entries') + '…" aria-label="Search ' + (opts.noun || 'entries') + '">' +
       '<select class="filter-select filter-distance" aria-label="Maximum distance from Cornerways">' +
-        '<option value="">Any distance</option>' +
+        '<option value="">Any distance away</option>' +
         '<option value="1">Under 1 mi</option>' +
         '<option value="3">Under 3 mi</option>' +
         '<option value="6">Under 6 mi</option>' +
