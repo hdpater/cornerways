@@ -6,7 +6,7 @@
     }).join('<br>');
   }
 
-  // ---- Route-style card (Walks, Climbing): name + stats line + description + links
+  // ---- Route-style card (Walks): name + stats line + description + links
   function routeCardHtml(item){
     var statLine = item.length || (item.style ? (item.style + (item.note ? ' · ' + item.note : '')) : (item.note || ''));
     var links = linksHtml(item.links);
@@ -117,8 +117,8 @@
     }
   }
 
-  // ---- Reusable filter bar + live-filtered list. Used by all four
-  // data-driven tabs (Walks, Climbing, Places to Eat, Places to Visit).
+  // ---- Reusable filter bar + live-filtered list. Used by all three
+  // data-driven tabs (Walks, Places to Eat, Places to Visit).
   function initFilterable(containerId, data, templateFn, opts){
     opts = opts || {};
     var container = document.getElementById(containerId);
@@ -206,7 +206,6 @@
   }
 
   initFilterable('walks-list', typeof WALKS !== 'undefined' ? WALKS : undefined, routeCardHtml, { noun: 'walks', hasLength: true, showMap: true, panel: 'walks' });
-  initFilterable('crags-list', typeof CRAGS !== 'undefined' ? CRAGS : undefined, routeCardHtml, { noun: 'crags', showMap: true, panel: 'climbing' });
   initFilterable('eat-list', typeof EATERIES !== 'undefined' ? EATERIES : undefined, simpleCardHtml, { noun: 'places to eat', showMap: true, panel: 'eat' });
   initFilterable('visit-list', typeof PLACES !== 'undefined' ? PLACES : undefined, simpleCardHtml, { noun: 'places to visit', showMap: true, panel: 'visit' });
 
