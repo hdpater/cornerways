@@ -303,7 +303,7 @@
 
   function routeFromHash(){
     var hash = window.location.hash.replace('#', '');
-    if (!hash){ activate('walks'); return; }
+    if (!hash){ activate('house-guide'); return; }
     var parts = hash.split('/');
     activate(parts[0], parts[1]);
   }
